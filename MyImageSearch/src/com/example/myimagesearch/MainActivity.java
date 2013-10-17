@@ -28,14 +28,10 @@ public class MainActivity extends Activity {
 	EditText inputEditText;
 	ImageAdapter urlToImageAdapter;
 	
-	String size;
-	String color;
-	String type;
-	String site;
-	
 	// This is going to store the Image URLs
-	// Setup adapter for this
 	ArrayList<ImageResult> imageURLs = new ArrayList<ImageResult>();
+	
+	String advancedSetting;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,21 +70,23 @@ public class MainActivity extends Activity {
     	if (requestCode == 0) {
     		if (resultCode == RESULT_OK) {
     			Bundle extras = data.getExtras();
-    			size = extras.getString("size");
-    			color = extras.getString("color");
-    			type = extras.getString("type");
-    			site = extras.getString("site");
+    			advancedSetting = extras.getString("finalUrl");
     		}
     	}
     }
     
     public boolean searchImages(View view) {
-    		String input = inputEditText.getText().toString();
-    		connect(new StringBuilder().append("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=").append(Uri.encode(input)).toString());
-    		return true;
+    	
+    	StringBuilder finalUrlStringBuilder = new StringBuilder();
+    	finalUrlStringBuilder.append("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=");
+    	finalUrlStringBuilder.append(Uri.encode(inputEditText.getText().toString()));
+    	if(advancedSetting != null) {
+    		finalUrlStringBuilder.append(advancedSetting);
+    	}
+    	connect(finalUrlStringBuilder.toString());
+    	return true;
     }
-    
-    // https://www.google.com/search?hl=en&q=interesting&tbm=isch
+ 
     // https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=
     public void connect(String url) {
     		Toast.makeText(getBaseContext(), url, Toast.LENGTH_SHORT).show();

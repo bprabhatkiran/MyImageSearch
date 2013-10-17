@@ -1,5 +1,6 @@
 package com.example.myimagesearch;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -37,7 +38,6 @@ public class SettingsActivity extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				size = (String)sizeSpinner.getItemAtPosition(arg2);
-				
 			}
 
 			@Override
@@ -53,7 +53,6 @@ public class SettingsActivity extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				type = (String)typeSpinner.getItemAtPosition(arg2);
-				
 			}
 
 			@Override
@@ -69,13 +68,11 @@ public class SettingsActivity extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				color = (String)colorSpinner.getItemAtPosition(arg2);
-				
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				color = (String)colorSpinner.getItemAtPosition(0);
-				
 			}
 			
 		});
@@ -90,12 +87,27 @@ public class SettingsActivity extends Activity {
 	
 	public boolean submit(View view) {
 		Intent i = new Intent();
-		i.putExtra("size", size);
-		i.putExtra("color", color);
-		i.putExtra("type", type);
-		i.putExtra("site", site.getText().toString());
+		i.putExtra("finalUrl", finalSettingsURL());
+		setResult(RESULT_OK, i);
 		finish();
 		return true;
+	}
+	
+	public String finalSettingsURL() {
+		StringBuilder finalUrlStringBuilder = new StringBuilder();
+		if(size.length() > 0) {
+			finalUrlStringBuilder.append("&imgsz="+Uri.encode(size));
+		}
+		if(type.length() > 0) {
+			finalUrlStringBuilder.append("&imgtype="+Uri.encode(type));
+		}
+		if(color.length() > 0) {
+			finalUrlStringBuilder.append("&imgcolor="+Uri.encode(color));
+		}
+		if(site.getText().toString().length() > 0) {
+			finalUrlStringBuilder.append("&as_sitesearch="+Uri.encode(site.getText().toString()));
+		}
+		return finalUrlStringBuilder.toString();
 	}
 
 }
