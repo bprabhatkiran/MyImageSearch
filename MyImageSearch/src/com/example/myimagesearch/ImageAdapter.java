@@ -14,7 +14,7 @@ import android.widget.ImageView;
 public class ImageAdapter extends BaseAdapter {
 	private Context myContext;
 	ArrayList<ImageResult> imageUrls;
-	
+
 	public ImageAdapter(Context c, ArrayList<ImageResult> imageURLs2) {
 		// TODO Auto-generated constructor stub
 		myContext = c;
@@ -31,7 +31,7 @@ public class ImageAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return imageUrls.get(position);
 	}
-	
+
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub

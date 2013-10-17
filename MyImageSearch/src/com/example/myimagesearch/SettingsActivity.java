@@ -17,7 +17,7 @@ public class SettingsActivity extends Activity {
 	String color;
 	String type;
 	String filterSite;
-	
+
 	EditText site;
 	Spinner sizeSpinner;
 	Spinner colorSpinner;
@@ -31,7 +31,7 @@ public class SettingsActivity extends Activity {
 		sizeSpinner = (Spinner) findViewById(R.id.spinner1);
 		colorSpinner = (Spinner) findViewById(R.id.Spinner01);
 		typeSpinner = (Spinner) findViewById(R.id.Spinner02);
-		
+
 		sizeSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -44,9 +44,9 @@ public class SettingsActivity extends Activity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 				size = (String)sizeSpinner.getItemAtPosition(0);
 			}
-			
+
 		});
-		
+
 		typeSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -59,9 +59,9 @@ public class SettingsActivity extends Activity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 				type = (String)typeSpinner.getItemAtPosition(0);
 			}
-			
+
 		});
-		
+
 		colorSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -74,7 +74,7 @@ public class SettingsActivity extends Activity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 				color = (String)colorSpinner.getItemAtPosition(0);
 			}
-			
+
 		});
 	}
 
@@ -84,7 +84,7 @@ public class SettingsActivity extends Activity {
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}
-	
+
 	public boolean submit(View view) {
 		Intent i = new Intent();
 		i.putExtra("finalUrl", finalSettingsURL());
@@ -92,7 +92,7 @@ public class SettingsActivity extends Activity {
 		finish();
 		return true;
 	}
-	
+
 	public String finalSettingsURL() {
 		StringBuilder finalUrlStringBuilder = new StringBuilder();
 		if(size.length() > 0) {

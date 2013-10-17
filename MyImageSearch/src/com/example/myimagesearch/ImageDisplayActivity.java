@@ -26,7 +26,7 @@ public class ImageDisplayActivity extends Activity {
 		getMenuInflater().inflate(R.menu.image_display, menu);
 		return true;
 	}
-	
+
 	public boolean returnBack(View view) {
 		// Create an intent and pass in data if needed
 		finish();
